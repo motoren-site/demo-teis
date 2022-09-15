@@ -1,14 +1,16 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /
-    
-# Copy csproj and restore as distinct layers
-COPY *.csproj ./
-RUN dotnet restore
-
-RUN dotnet publish -c Release -o out
-    
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+EXPOSE 80
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /
+COPY ["demo-teis.csproj", "."]
+RUN dotnet restore "./DockerDemo.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "demo-teis.csproj" -c Release -o /app/build
+FROM build AS publish
+RUN dotnet publish "demo-teis.csproj" -c Release -o /app/publish
+FROM base AS final
 WORKDIR /app
-COPY --from=build-env /app/out .
+COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "demo-teis.dll"]
