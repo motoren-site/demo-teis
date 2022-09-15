@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: apps
+  labels:
+    app: demo-teis
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-teis
+  template:
+    metadata:
+      labels:
+        app: demo-teis
+    spec:
+      containers:
+      - name: demo-teis
+        image: registry.digitalocean.com/olsen/demo-teis:$(echo $GITHUB_SHA | head -c7)
+        ports:
+        - containerPort: 80
