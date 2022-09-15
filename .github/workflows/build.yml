@@ -20,11 +20,11 @@ jobs:
     - name: Build latest
       run: docker build -t registry.digitalocean.com/olsen/demo-teis:$(echo $GITHUB_SHA | head -c7) -t registry.digitalocean.com/olsen/demo-teis:latest .
 
-    - name: Docker tag
-      run: docker tag registry.digitalocean.com/olsen/demo-teis:$(echo $GITHUB_SHA | head -c7) registry.digitalocean.com/olsen/demo-teis:latest
-
     - name: Docker Push
       run: docker push registry.digitalocean.com/olsen/demo-teis:$(echo $GITHUB_SHA | head -c7)
+
+    - name: Docker Push
+      run: docker push registry.digitalocean.com/olsen/demo-teis:latest
 
     - name: Set up kubectl
       uses: matootie/dokube@v1.4.0
