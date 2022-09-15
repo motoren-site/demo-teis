@@ -4,7 +4,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /
 COPY ["demo-teis.csproj", "."]
-RUN dotnet restore "./DockerDemo.csproj"
+RUN dotnet restore "./demo-teis.csproj"
 COPY . .
 WORKDIR "/src/."
 RUN dotnet build "demo-teis.csproj" -c Release -o /app/build
