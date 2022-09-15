@@ -6,7 +6,7 @@ WORKDIR /
 COPY ["demo-teis.csproj", "."]
 RUN dotnet restore "./demo-teis.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/."
 RUN dotnet build "demo-teis.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "demo-teis.csproj" -c Release -o /app/publish
