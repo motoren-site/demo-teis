@@ -11,6 +11,6 @@ RUN dotnet build "demo-teis.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "demo-teis.csproj" -c Release -o /app/publish
 FROM base AS final
-WORKDIR /app
+#WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "demo-teis.dll"]
