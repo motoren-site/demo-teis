@@ -28,6 +28,7 @@ jobs:
       with:
         personalAccessToken: ${{ secrets.DIGITAL_OCEAN_TOKEN }}
         clusterName: k8s-miles
+        namespace: apps
 
     - name: Apply
-      run: kubectl apply -f deployment.yml
+      run: kubectl apply -f ./deployment.yml
