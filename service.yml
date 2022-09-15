@@ -2,9 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: demo-teis
+  namespace: apps
 spec:
   selector:
-    app.kubernetes.io/name: proxy
+    app: demo-teis
   ports:
   - name: demo-teis
     protocol: TCP
