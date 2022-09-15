@@ -7,10 +7,9 @@ metadata:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
-  - hosts:
-    - app.motoren.site
   rules:
-  - http:
+  - host: app.motoren.site
+    http:
       paths:
       - path: /demoteis
         pathType: Prefix
@@ -18,4 +17,4 @@ spec:
           service:
             name: demo-teis
             port:
-              number: 443
+              number: 80
