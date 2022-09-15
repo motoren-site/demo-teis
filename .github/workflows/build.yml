@@ -33,5 +33,11 @@ jobs:
         clusterName: k8s-miles
         namespace: apps
 
-    - name: Apply
+    - name: Apply Deployment
       run: kubectl apply -f $GITHUB_WORKSPACE/deployment.yml
+
+    - name: Apply Service
+      run: kubectl apply -f $GITHUB_WORKSPACE/service.yml
+
+    - name: Apply Ingress
+      run: kubectl apply -f $GITHUB_WORKSPACE/ingress.yml
