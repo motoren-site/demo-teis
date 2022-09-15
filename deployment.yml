@@ -15,7 +15,6 @@ spec:
       labels:
         app: demo-teis
     spec:
-      replicas: 1
       containers:
       - name: demo-teis
         image: registry.digitalocean.com/olsen/demo-teis:latest
