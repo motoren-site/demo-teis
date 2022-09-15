@@ -41,3 +41,6 @@ jobs:
 
     - name: Apply Ingress
       run: kubectl apply -f $GITHUB_WORKSPACE/ingress.yml
+
+    - name: Autoscaler
+      run: kubectl autoscale deployment demo-teis --cpu-percent=50 --min=1 --max=10
